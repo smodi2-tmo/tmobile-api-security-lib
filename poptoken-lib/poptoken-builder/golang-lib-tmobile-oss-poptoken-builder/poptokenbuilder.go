@@ -139,7 +139,7 @@ func buildEHTSAndEDTS(r *http.Request) (ehts string, edts string, err error) {
 	}
 	edtsBase64 := base64.URLEncoding.EncodeToString(edtsHash.Sum(nil))
 	// Remove the base64 padding, otherwise it won't work
-	edtsBase64 = strings.ReplaceAll(edtsBase64, "=", "")
+	edtsBase64 = strings.Replace(edtsBase64, "=", "", -1)
 	debugLog("edtsBase64: %s\n\n", edtsBase64)
 	return keysBuilder.String(), edtsBase64, nil
 }
